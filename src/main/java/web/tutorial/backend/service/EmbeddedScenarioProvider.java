@@ -18,13 +18,17 @@ public class EmbeddedScenarioProvider {
 	private ScenarioMapper scenarioMapper;
 
 	public List<Scenario> readAll() {
+		return readAllDTO().stream().map(scenarioMapper::readFromDTO).toList();
+	}
+
+	public List<ScenarioDTO> readAllDTO() {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 			objectMapper.registerModule(new JavaTimeModule());
 			PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-			List<Scenario> result = new ArrayList<>();
+			List<ScenarioDTO> result = new ArrayList<>();
 			for (var scenarioFile : resolver.getResources("/scenarios/*.json")) {
-				result.add(scenarioMapper.readFromDTO(objectMapper.readValue(scenarioFile.getFile(), ScenarioDTO.class)));
+				result.add(objectMapper.readValue(scenarioFile.getFile(), ScenarioDTO.class));
 			}
 			return result;
 		} catch (IOException e) {
