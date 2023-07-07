@@ -65,15 +65,11 @@
 			<groupId>com.company.tutorial3</groupId>
 			<artifactId>datamodel</artifactId>
 			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/com.company.tutorial3.datamodel_1.0.0.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.company.tutorial3</groupId>
 			<artifactId>simulation</artifactId>
 			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/com.company.tutorial3.simulation_1.0.0.jar</systemPath>
 		</dependency>
 
 		<!-- JSON -->

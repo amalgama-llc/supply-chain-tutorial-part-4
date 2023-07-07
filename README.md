@@ -9,14 +9,21 @@ to model a delivery network of warehouses and stores.
 
 It provides a synchronous HTTP endpoint to submit a scenario (initial data for the model) and return simulation results.
 
-## How to build and run
+## How to build and run locally
 1. Download and install JDK-17 and Maven 3.8.6+.
-1. Download the source code of the desktop application for Part 3 of the Supply Chain tutorial: https://github.com/amalgama-llc/supply-chain-tutorial-part-3.
-1. In the Part 3 source code folder, run `mvn clean package` console command . After the compilation is finished, a new folder `releng/com.company.tutorial3.product/target/repository` will be created. Its `plugins` subfolder contains the jar files with the simulation logic that we need to import: 
+2. Download the source code of the desktop application for Part 3 of the Supply Chain tutorial: https://github.com/amalgama-llc/supply-chain-tutorial-part-3.
+3. In the Part 3 source code folder, run `mvn clean package` console command . After the compilation is finished, a new folder `releng/com.company.tutorial3.product/target/repository` will be created. Its `plugins` subfolder contains the jar files with the simulation logic that we need: 
    - `com.company.tutorial3.datamodel_1.0.0.jar` and 
    - `com.company.tutorial3.simulation_1.0.0.jar`.
-1. In the Part 4 source code folder, create a new `lib` folder. Copy the `com.company.tutorial3.datamodel_1.0.0.jar` and `com.company.tutorial3.simulation_1.0.0.jar` files from the previous step into the `lib` folder.
-1. In the Part 4 source code folder, run `mvn spring-boot:run` console command.
+4. In that `plugins` subfolder, run the following two commands to install the simulation logic libraries into the local Maven repository:
+
+```
+mvn install:install-file -Dfile=com.company.tutorial3.datamodel_1.0.0.jar -DgroupId=com.company.tutorial3 -DartifactId=datamodel -Dversion=1.0.0 -Dpackaging=jar -DgeneratePom=true
+
+mvn install:install-file -Dfile=com.company.tutorial3.simulation_1.0.0.jar -DgroupId=com.company.tutorial3 -DartifactId=simulation -Dversion=1.0.0 -Dpackaging=jar -DgeneratePom=true
+```
+
+5. In the Part 4 source code folder, run `mvn spring-boot:run` console command.
 
 After the web service is started, open this link in your browser:
 
@@ -47,11 +54,11 @@ Here is a sample of what you should get in response:
 This response contains the general statistics collected after the simulation is finished:
 the service level (between 0 and 1), total transportation expenses, and the expenses-to-SL ratio that shows how much money is spent per one percent of the service level.
 
-Try other scenarios from the 'scenarios' folder, or create your own scenarios using the sample ones.
+Try other scenarios from the 'src/main/resources/scenarios' folder, or create your own scenarios using the sample ones.
 
 You can set up your own modeling conditions and see how it affects the simulation results: 
 - the road network (nodes and arcs), 
 - the set of warehouses and stores, 
-- the number of trucks and the speed of each truck,
+- the set of trucks,
 - average interval between the generated transportation requests,
 - and maximum delivery time (belated deliveries are not cancelled, but they reduce the service level).
