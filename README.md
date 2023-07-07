@@ -1,10 +1,10 @@
 # Part 4: Supply Chain Web Service
 
 ## About
-This repository contains the source code for the [Part 4 of the Supply Chain tutorial](https://platform.amalgamasimulation.com/amalgama/SupplyChainTutorial/sc_tutorial_part_4.html).
+This repository contains the source code for the [Part 4 of the Supply Chain tutorial](https://platform.amalgamasimulation.com/amalgama/SupplyChainTutorial/part4/sc_tutorial_part_4.html).
 
 The web service uses the supply chain simulation logic implemented in
-[Part 3 of the Supply Chain tutorial](https://platform.amalgamasimulation.com/amalgama/SupplyChainTutorial/sc_tutorial_part_3.html)
+[Part 3 of the Supply Chain tutorial](https://platform.amalgamasimulation.com/amalgama/SupplyChainTutorial/part3/sc_tutorial_part_3.html)
 to model a delivery network of warehouses and stores.
 
 It provides a synchronous HTTP endpoint to submit a scenario (initial data for the model) and return simulation results.
